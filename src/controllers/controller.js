@@ -22,4 +22,15 @@ const showTopic = async (req, res) => {
   res.render('topics/show', { topic })
 }
 
-module.exports = { getAllTopics, getNewTopicForm, createTopic, showTopic }
+const getEditTopicForm = async (req, res) => {
+  const { rows: [topic] } = await pool.query('SELECT * FROM topics WHERE id = $1', [req.params.id])
+  if (!topic) return res.status(404).send('Topic no encontrado')
+  res.render('topics/edit', { topic })
+}
+
+const updateTopic = async (req, res) => {
+  await pool.query('UPDATE topics SET title = $1, description = $2 WHERE id = $3', [req.body.title, req.body.description, req.params.id])
+  res.redirect('/')
+}
+
+module.exports = { getAllTopics, getNewTopicForm, createTopic, showTopic, getEditTopicForm, updateTopic }

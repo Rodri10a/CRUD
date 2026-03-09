@@ -38,4 +38,13 @@ const deleteTopic = async (req, res) => {
   res.redirect('/')
 }
 
-module.exports = { getAllTopics, getNewTopicForm, createTopic, showTopic, getEditTopicForm, updateTopic, deleteTopic }
+const voteTopic = async (req, res) => {
+  const { rows: [topic] } = await pool.query('UPDATE topics SET votes = votes + 1 WHERE id = $1 RETURNING votes', [req.params.id])
+  if (!topic) return res.status(404).json({ error: 'Topic no encontrado' })
+  res.json({ success: true, votes: topic.votes })
+}
+
+module.exports = {
+  getAllTopics, getNewTopicForm, createTopic, showTopic,
+  getEditTopicForm, updateTopic, deleteTopic, voteTopic
+}

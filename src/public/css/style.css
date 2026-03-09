@@ -171,3 +171,17 @@ hr {
   border: none;
   border-top: 1px solid #eee;
 }
+
+/* Utilidades */
+.hidden { display: none; }
+.inline { display: inline; }
+.mt { margin-top: 1rem; }
+
+.page-title { margin-bottom: 0.5rem; }
+.page-subtitle { margin-bottom: 1rem; }
+
+.form-inline {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+}

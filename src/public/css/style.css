@@ -92,3 +92,82 @@ body {
   margin-bottom: 0.8rem;
   border-radius: 0 8px 8px 0;
 }
+
+/* Estilos generales de botones */
+.btn {
+  padding: 0.4rem 0.8rem;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  text-decoration: none;
+  font-size: 0.85rem;
+  display: inline-block;
+}
+
+/* Boton primario azul */
+.btn-primary {
+  background-color: #4a90e2;
+  color: white;
+}
+
+/* Boton de votar verde */
+.btn-vote {
+  background-color: #27ae60;
+  color: white;
+}
+
+.btn-vote:hover {
+  background-color: #219a52;
+}
+
+/* Boton de editar amarillo */
+.btn-edit {
+  background-color: #f39c12;
+  color: white;
+}
+
+/* Boton de eliminar rojo */
+.btn-delete {
+  background-color: #e74c3c;
+  color: white;
+}
+
+/* Estilos del formulario */
+.form-container {
+  background: white;
+  padding: 2rem;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.form-group {
+  margin-bottom: 1rem;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 0.3rem;
+  font-weight: bold;
+}
+
+/* Inputs y textareas con ancho completo */
+.form-group input,
+.form-group textarea {
+  width: 100%;
+  padding: 0.5rem;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 1rem;
+}
+
+.form-group textarea {
+  height: 100px;
+  resize: vertical;
+}
+
+/* Separador horizontal */
+hr {
+  margin: 1.5rem 0;
+  border: none;
+  border-top: 1px solid #eee;
+}

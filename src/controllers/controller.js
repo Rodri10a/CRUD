@@ -7,4 +7,11 @@ const getAllTopics = async (req, res) => {
   res.render('topics/index', { topics: rows })
 }
 
-module.exports = { getAllTopics }
+const getNewTopicForm = (req, res) => res.render('topics/new')
+
+const createTopic = async (req, res) => {
+  await pool.query('INSERT INTO topics (title, description) VALUES ($1, $2)', [req.body.title, req.body.description])
+  res.redirect('/')
+}
+
+module.exports = { getAllTopics, getNewTopicForm, createTopic }

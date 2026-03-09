@@ -1,0 +1,16 @@
+<%- include('../partials/header') %>
+
+<div class="topic-detail">
+  <a href="/" class="btn">← Volver</a>
+
+  <h1><%= topic.title %></h1>
+  <p><%= topic.description %></p>
+
+  <div class="vote-section">
+    <button class="btn btn-vote vote-topic-btn" data-id="<%= topic.id %>">Votar topic</button>
+    <span id="votes-<%= topic.id %>" class="vote-count"><%= topic.votes %> votos</span>
+  </div>
+
+</div>
+
+<%- include('../partials/footer') %>

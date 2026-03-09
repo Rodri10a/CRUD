@@ -14,4 +14,12 @@ const createTopic = async (req, res) => {
   res.redirect('/')
 }
 
-module.exports = { getAllTopics, getNewTopicForm, createTopic }
+const showTopic = async (req, res) => {
+  const { rows: [topic] } = await pool.query('SELECT * FROM topics WHERE id = $1', [req.params.id])
+  if (!topic) return res.status(404).send('Topic no encontrado')
+  const { rows: links } = await pool.query('SELECT * FROM links WHERE topic_id = $1 ORDER BY votes DESC', [req.params.id])
+  topic.links = links
+  res.render('topics/show', { topic })
+}
+
+module.exports = { getAllTopics, getNewTopicForm, createTopic, showTopic }

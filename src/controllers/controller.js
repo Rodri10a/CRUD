@@ -33,4 +33,9 @@ const updateTopic = async (req, res) => {
   res.redirect('/')
 }
 
-module.exports = { getAllTopics, getNewTopicForm, createTopic, showTopic, getEditTopicForm, updateTopic }
+const deleteTopic = async (req, res) => {
+  await pool.query('DELETE FROM topics WHERE id = $1', [req.params.id])
+  res.redirect('/')
+}
+
+module.exports = { getAllTopics, getNewTopicForm, createTopic, showTopic, getEditTopicForm, updateTopic, deleteTopic }

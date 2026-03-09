@@ -61,8 +61,14 @@ const deleteLink = async (req, res) => {
   res.redirect(`/topics/${req.params.id}`)
 }
 
+const voteLink = async (req, res) => {
+  const { rows: [link] } = await pool.query('UPDATE links SET votes = votes + 1 WHERE id = $1 AND topic_id = $2 RETURNING votes', [req.params.linkId, req.params.id])
+  if (!link) return res.status(404).json({ error: 'Link no encontrado' })
+  res.json({ success: true, votes: link.votes })
+}
+
 module.exports = {
   getAllTopics, getNewTopicForm, createTopic, showTopic,
   getEditTopicForm, updateTopic, deleteTopic, voteTopic,
-  createLink, updateLink, deleteLink
+  createLink, updateLink, deleteLink, voteLink
 }

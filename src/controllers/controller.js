@@ -51,8 +51,18 @@ const createLink = async (req, res) => {
   res.redirect(`/topics/${req.params.id}`)
 }
 
+const updateLink = async (req, res) => {
+  await pool.query('UPDATE links SET title = $1, url = $2 WHERE id = $3 AND topic_id = $4', [req.body.title, req.body.url, req.params.linkId, req.params.id])
+  res.redirect(`/topics/${req.params.id}`)
+}
+
+const deleteLink = async (req, res) => {
+  await pool.query('DELETE FROM links WHERE id = $1 AND topic_id = $2', [req.params.linkId, req.params.id])
+  res.redirect(`/topics/${req.params.id}`)
+}
+
 module.exports = {
   getAllTopics, getNewTopicForm, createTopic, showTopic,
   getEditTopicForm, updateTopic, deleteTopic, voteTopic,
-  createLink
+  createLink, updateLink, deleteLink
 }

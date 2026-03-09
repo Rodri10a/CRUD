@@ -44,7 +44,15 @@ const voteTopic = async (req, res) => {
   res.json({ success: true, votes: topic.votes })
 }
 
+// ── LINKS ──
+
+const createLink = async (req, res) => {
+  await pool.query('INSERT INTO links (topic_id, title, url) VALUES ($1, $2, $3)', [req.params.id, req.body.title, req.body.url])
+  res.redirect(`/topics/${req.params.id}`)
+}
+
 module.exports = {
   getAllTopics, getNewTopicForm, createTopic, showTopic,
-  getEditTopicForm, updateTopic, deleteTopic, voteTopic
+  getEditTopicForm, updateTopic, deleteTopic, voteTopic,
+  createLink
 }

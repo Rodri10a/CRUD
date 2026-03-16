@@ -58,4 +58,4 @@ const voteLink = async (req, res) => {
 module.exports = {
   getAllTopics, createTopic, updateTopic, deleteTopic, voteTopic,
   createLink, updateLink, deleteLink, voteLink
-}
+} 
